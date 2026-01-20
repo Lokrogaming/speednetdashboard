@@ -219,17 +219,10 @@ const Auth = () => {
           });
           navigate('/');
         }
-      } else {
-        if (!birthday) {
-          toast({
-            title: "Birthday Required",
-            description: "Please enter your birthday to create an account",
-            variant: "destructive"
-          });
-          setLoading(false);
-          return;
-        }
-        const { error } = await signUp(email, password, username, birthday);
+    
+        
+       thday) {   if (!bir
+        const { error } = await signUp(email, password, username);
         if (error) {
           if (error.message.includes('already registered')) {
             toast({
@@ -244,34 +237,7 @@ const Auth = () => {
               variant: "destructive"
             });
           }
-        } else {
-          // Check for pending invite code and redeem it
-          const pendingInviteCode = sessionStorage.getItem('pendingInviteCode');
-          if (pendingInviteCode) {
-            sessionStorage.removeItem('pendingInviteCode');
-            // Small delay to ensure profile is created
-            setTimeout(async () => {
-              const { data } = await supabase.rpc('redeem_invite_code', { _code: pendingInviteCode });
-              if (data) {
-                toast({
-                  title: "Invite Bonus!",
-                  description: "You received 200 Credits and 500 XP from your invite!"
-                });
-              }
-            }, 1000);
-          }
-          toast({
-            title: "Account Created!",
-            description: "Welcome to LokroGames!"
-          });
-          navigate('/');
-        }
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
-
+        } 
   const handlePhoneSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
