@@ -221,7 +221,7 @@ const Auth = () => {
         }
     
         
-       thday) {   if (!bir
+       
         const { error } = await signUp(email, password, username);
         if (error) {
           if (error.message.includes('already registered')) {
